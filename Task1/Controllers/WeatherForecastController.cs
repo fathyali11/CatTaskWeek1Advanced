@@ -28,6 +28,11 @@ namespace Task1.Controllers
             })
             .ToArray();
         }
-
+        [HttpGet("schedule")]
+        public IActionResult Sechudleing()
+        {
+            _hangfireService.SendEmails();
+            return Ok();
+        }
     }
 }

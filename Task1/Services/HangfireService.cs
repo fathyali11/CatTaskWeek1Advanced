@@ -8,5 +8,8 @@ public class HangfireService
     {
         BackgroundJob.Enqueue(() => Console.WriteLine("data is valid"));
     }
-    
+    public void SendEmails()
+    {
+        BackgroundJob.Schedule(() => Console.WriteLine("data is valid"), TimeSpan.FromMinutes(10));
+    }
 }
