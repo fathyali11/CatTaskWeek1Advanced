@@ -12,4 +12,9 @@ public class HangfireService
     {
         BackgroundJob.Schedule(() => Console.WriteLine("data is valid"), TimeSpan.FromMinutes(10));
     }
+    public void RecurringJob()
+    {
+        //simulation only 
+        Console.WriteLine("data sent");
+    }
 }

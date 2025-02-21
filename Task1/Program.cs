@@ -27,6 +27,14 @@ builder.Services.AddScoped<HangfireService>();
 
 
 var app = builder.Build();
+using(var scope=app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var hangfireService = services.GetRequiredService<HangfireService>();
+    var recurringJobManager = services.GetRequiredService<IRecurringJobManager>();
+
+    recurringJobManager.AddOrUpdate("RecurringJob", () => hangfireService.RecurringJob(), Cron.Minutely);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
